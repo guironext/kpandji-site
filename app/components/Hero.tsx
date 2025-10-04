@@ -600,15 +600,23 @@ const Hero = () => {
                       message: (formData.get("message") as string) || "",
                     };
 
-                    const result = await createOffreExceptionnelle(data);
+                    try {
+                      const result = await createOffreExceptionnelle(data);
 
-                    if (result.success) {
-                      setIsFormSubmitted(true);
-                      form.reset();
-                      setTimeout(() => {
-                        setIsDialogOpen(false);
-                        setIsFormSubmitted(false);
-                      }, 1500);
+                      if (result.success) {
+                        setIsFormSubmitted(true);
+                        form.reset();
+                        setTimeout(() => {
+                          setIsDialogOpen(false);
+                          setIsFormSubmitted(false);
+                        }, 1500);
+                      } else {
+                        console.error("Failed to submit offer:", result);
+                        alert("Erreur lors de l'envoi. Veuillez réessayer.");
+                      }
+                    } catch (error) {
+                      console.error("Error submitting exceptional offer:", error);
+                      alert("Erreur lors de l'envoi. Veuillez réessayer.");
                     }
                   }}
                 >
