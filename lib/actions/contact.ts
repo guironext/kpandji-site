@@ -2,7 +2,7 @@
 
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
-import { resend, ADMIN_EMAIL } from "../resend";
+import { resend, ADMIN_EMAIL, SENDER_EMAIL } from "../resend";
 
 export async function createContact(formData: {
   name: string;
@@ -14,7 +14,7 @@ export async function createContact(formData: {
   try {
     // Send email via Resend
     await resend.emails.send({
-      from: 'Kpandji Contact <onboarding@resend.dev>',
+      from: `Kpandji Contact <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouveau Contact: ${formData.subject}`,
       html: `

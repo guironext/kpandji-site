@@ -3,7 +3,7 @@
 import { clerkClient } from "@clerk/nextjs/server";
 import { prisma } from "../prisma";
 import { UserRole } from "@/lib/generated/prisma";
-import { resend, ADMIN_EMAIL } from "../resend";
+import { resend, ADMIN_EMAIL, SENDER_EMAIL } from "../resend";
 
 export async function createEmployee(
   department: string | undefined,
@@ -57,7 +57,7 @@ export async function createOffreSpeciale(formData: {
   try {
     // Send email via Resend
     await resend.emails.send({
-      from: 'Kpandji Offres <onboarding@resend.dev>',
+      from: `Kpandji Offres <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Offre Spéciale`,
       html: `
@@ -113,7 +113,7 @@ export async function createOffreExceptionnelle(formData: {
     
     // Send email via Resend
     const emailResult = await resend.emails.send({
-      from: 'Kpandji Offres <onboarding@resend.dev>',
+      from: `Kpandji Offres <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Offre Exceptionnelle - ${formData.vehicule}`,
       html: `
@@ -172,7 +172,7 @@ export async function createFactureProforma(formData: {
   try {
     // Send email via Resend
     await resend.emails.send({
-      from: 'Kpandji Factures <onboarding@resend.dev>',
+      from: `Kpandji Factures <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Facture Proforma - ${formData.carName}`,
       html: `
@@ -221,7 +221,7 @@ export async function createCommandeAccessoire(formData: {
   try {
     // Send email via Resend
     await resend.emails.send({
-      from: 'Kpandji Accessoires <onboarding@resend.dev>',
+      from: `Kpandji Accessoires <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Commande Accessoire`,
       html: `

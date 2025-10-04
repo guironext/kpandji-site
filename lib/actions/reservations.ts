@@ -2,7 +2,7 @@
 
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
-import { resend, ADMIN_EMAIL } from "../resend";
+import { resend, ADMIN_EMAIL, SENDER_EMAIL } from "../resend";
 
 export async function createReservation(formData: {
   voiture: string;
@@ -16,7 +16,7 @@ export async function createReservation(formData: {
   try {
     // Send email via Resend
     await resend.emails.send({
-      from: 'Kpandji Reservations <onboarding@resend.dev>',
+      from: `Kpandji Reservations <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Réservation: ${formData.voiture}`,
       html: `
