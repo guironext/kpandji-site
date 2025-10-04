@@ -47,3 +47,6 @@ public/*.pdf
 public/*.mp4
 public/**/*.psd
 public/hero/*.psd
+
+# clerk configuration (can include secrets)
+/.clerk/

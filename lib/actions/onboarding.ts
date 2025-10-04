@@ -106,12 +106,22 @@ export async function createOffreExceptionnelle(formData: {
   message: string;
 }) {
   try {
-    console.log('Attempting to send email with Resend...');
+    console.log('=== Starting createOffreExceptionnelle ===');
     console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
     console.log('ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
+    console.log('SENDER_EMAIL:', process.env.SENDER_EMAIL);
     console.log('Form data:', formData);
     
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY is not set');
+    }
+    
+    if (!ADMIN_EMAIL || ADMIN_EMAIL === 'admin@example.com') {
+      throw new Error('ADMIN_EMAIL is not configured');
+    }
+    
     // Send email via Resend
+    console.log('Sending email...');
     const emailResult = await resend.emails.send({
       from: `Kpandji Offres <${SENDER_EMAIL}>`,
       to: [ADMIN_EMAIL],
@@ -154,11 +164,19 @@ export async function createOffreExceptionnelle(formData: {
     });
 
     console.log('Database save successful');
+    console.log('=== createOffreExceptionnelle completed successfully ===');
     return { success: true };
   } catch (error) {
-    console.error("Error creating exceptional offer:", error);
-    console.error("Full error details:", JSON.stringify(error, null, 2));
-    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+    console.error("=== ERROR in createOffreExceptionnelle ===");
+    console.error("Error:", error);
+    
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error("Error message:", errorMessage);
+    
+    return { 
+      success: false, 
+      error: errorMessage 
+    };
   }
 }
 

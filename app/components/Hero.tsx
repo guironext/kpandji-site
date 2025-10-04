@@ -612,7 +612,8 @@ const Hero = () => {
                         }, 1500);
                       } else {
                         console.error("Failed to submit offer:", result);
-                        alert("Erreur lors de l'envoi. Veuillez réessayer.");
+                        const errorMsg = result.error || "Erreur inconnue";
+                        alert(`Erreur: ${errorMsg}\n\nVeuillez vérifier que les variables d'environnement RESEND_API_KEY et ADMIN_EMAIL sont configurées.`);
                       }
                     } catch (error) {
                       console.error("Error submitting exceptional offer:", error);
