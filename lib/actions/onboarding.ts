@@ -61,12 +61,18 @@ export async function createOffreSpeciale(formData: {
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Offre Spéciale`,
       html: `
-        <h2>Nouvelle demande d'offre spéciale</h2>
-        <p><strong>Nom:</strong> ${formData.name}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Téléphone:</strong> ${formData.phone}</p>
-        <p><strong>Message:</strong></p>
-        <p>${formData.message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+          <h2 style="color: #10b981; border-bottom: 3px solid #10b981; padding-bottom: 10px;">🎁 Nouvelle demande d'offre spéciale</h2>
+          <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Nom:</strong> ${formData.name}</p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Email:</strong> <a href="mailto:${formData.email}" style="color: #3b82f6;">${formData.email}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Téléphone:</strong> <a href="tel:${formData.phone}" style="color: #3b82f6;">${formData.phone}</a></p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-left: 4px solid #10b981; border-radius: 4px;">
+              <p style="margin: 0; color: #374151;"><strong>Message:</strong></p>
+              <p style="margin: 10px 0 0 0; color: #6b7280;">${formData.message}</p>
+            </div>
+          </div>
+        </div>
       `,
     });
 
@@ -106,15 +112,24 @@ export async function createOffreExceptionnelle(formData: {
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Offre Exceptionnelle - ${formData.vehicule}`,
       html: `
-        <h2>Nouvelle demande d'offre exceptionnelle</h2>
-        <p><strong>Véhicule:</strong> ${formData.vehicule}</p>
-        <p><strong>Prix Promotionnel:</strong> ${formData.prixPromotionnel}</p>
-        <p><strong>Remise:</strong> ${formData.remise}</p>
-        <p><strong>Nom:</strong> ${formData.name}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Téléphone:</strong> ${formData.phone}</p>
-        <p><strong>Message:</strong></p>
-        <p>${formData.message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+          <h2 style="color: #ef4444; border-bottom: 3px solid #ef4444; padding-bottom: 10px;">⚡ Nouvelle demande d'offre exceptionnelle</h2>
+          <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <p style="margin: 10px 0; font-size: 18px; color: #f59e0b;"><strong>🚗 Véhicule:</strong> ${formData.vehicule}</p>
+            <div style="background-color: #fef3c7; padding: 10px; border-radius: 4px; margin: 15px 0;">
+              <p style="margin: 5px 0;"><strong style="color: #374151;">Prix Promotionnel:</strong> ${formData.prixPromotionnel}</p>
+              <p style="margin: 5px 0;"><strong style="color: #374151;">Remise:</strong> ${formData.remise}</p>
+            </div>
+            <hr style="border: 1px solid #e5e7eb; margin: 15px 0;">
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Nom:</strong> ${formData.name}</p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Email:</strong> <a href="mailto:${formData.email}" style="color: #3b82f6;">${formData.email}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Téléphone:</strong> <a href="tel:${formData.phone}" style="color: #3b82f6;">${formData.phone}</a></p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-left: 4px solid #ef4444; border-radius: 4px;">
+              <p style="margin: 0; color: #374151;"><strong>Message:</strong></p>
+              <p style="margin: 10px 0 0 0; color: #6b7280;">${formData.message}</p>
+            </div>
+          </div>
+        </div>
       `,
     });
 
@@ -152,13 +167,20 @@ export async function createFactureProforma(formData: {
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Facture Proforma - ${formData.carName}`,
       html: `
-        <h2>Nouvelle demande de facture proforma</h2>
-        <p><strong>Voiture:</strong> ${formData.carName}</p>
-        <p><strong>Nom:</strong> ${formData.name}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Téléphone:</strong> ${formData.phone}</p>
-        <p><strong>Message:</strong></p>
-        <p>${formData.message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+          <h2 style="color: #f59e0b; border-bottom: 3px solid #f59e0b; padding-bottom: 10px;">Nouvelle demande de facture proforma</h2>
+          <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <p style="margin: 10px 0; font-size: 18px; color: #f59e0b;"><strong>🚗 Voiture:</strong> ${formData.carName}</p>
+            <hr style="border: 1px solid #e5e7eb; margin: 15px 0;">
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Nom:</strong> ${formData.name}</p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Email:</strong> <a href="mailto:${formData.email}" style="color: #3b82f6;">${formData.email}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Téléphone:</strong> <a href="tel:${formData.phone}" style="color: #3b82f6;">${formData.phone}</a></p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-left: 4px solid #f59e0b; border-radius: 4px;">
+              <p style="margin: 0; color: #374151;"><strong>Message:</strong></p>
+              <p style="margin: 10px 0 0 0; color: #6b7280;">${formData.message}</p>
+            </div>
+          </div>
+        </div>
       `,
     });
 
@@ -194,13 +216,19 @@ export async function createCommandeAccessoire(formData: {
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Commande Accessoire`,
       html: `
-        <h2>Nouvelle commande d'accessoire</h2>
-        <p><strong>Nom:</strong> ${formData.nom}</p>
-        <p><strong>Prénom:</strong> ${formData.prenom}</p>
-        <p><strong>Email:</strong> ${formData.email}</p>
-        <p><strong>Téléphone:</strong> ${formData.phone}</p>
-        <p><strong>Message:</strong></p>
-        <p>${formData.message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+          <h2 style="color: #f59e0b; border-bottom: 3px solid #f59e0b; padding-bottom: 10px;">Nouvelle commande d'accessoire</h2>
+          <div style="background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Prénom:</strong> ${formData.prenom}</p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Nom:</strong> ${formData.nom}</p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Email:</strong> <a href="mailto:${formData.email}" style="color: #3b82f6;">${formData.email}</a></p>
+            <p style="margin: 10px 0;"><strong style="color: #374151;">Téléphone:</strong> <a href="tel:${formData.phone}" style="color: #3b82f6;">${formData.phone}</a></p>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f3f4f6; border-left: 4px solid #f59e0b; border-radius: 4px;">
+              <p style="margin: 0; color: #374151;"><strong>Message:</strong></p>
+              <p style="margin: 10px 0 0 0; color: #6b7280;">${formData.message}</p>
+            </div>
+          </div>
+        </div>
       `,
     });
 
