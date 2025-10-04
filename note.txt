@@ -1,0 +1,67 @@
+1- install shadcn
+
+
+consider this 
+=========================================================
+npm i prisma
+npx prisma init
+|||| npx prisma migrate dev --- init
+|||| npx prisma generate
+|||| npx prisma db push
+npm i @prisma/client
+
+
+===========================================
+clerk 
+==> aller à clerk config et customise session and use
+"--
+{
+   "metadata": "{{user.public_metadata}}"
+}
+"--
+
+now create the file "global.d.ts" to customize all variables we need 
+
+we need to configure Ngrok
+==> go to https://dashboard.ngrok.com/get-started/setup/windows
+==> download for windows
+==> go to Deploy your app online ==> Static Domain==> copy the link
+
+
+
+Now let's config webhooks to sync clerk data in our app
+================================================================
+gotto-- Webhooks->Sync Clerk data to you app -> Setup Ngrok   =
+    -downloard the file and run it                            =
+    -then run key in the console                              =
+================================================================
+execute the static domain 
+   -copy paste the link and remove port 80 to 3000
+ like =>  
+ =
+ =
+ 
+ ngrok http --url=robin-prime-goose.ngrok-free.app 3000
+
+
+ 
+
+
+
+==> run it into your console.
+
+
+return to Webhooks in your clerk app -> Endpoint-> create Endpoint and paste in your url =>robin-prime-goose.ngrok-free.app
+but it should finally looks like this
+   " https://robin-prime-goose.ngrok-free.app/api/webhooks "
+
+after go to ""Subscribe to events""
+check "user.created"
+then click "create"
+after edit "middleware" file
+
+install
+npm i svix
+
+install form from shadcn
+npx shadcn@latest add form

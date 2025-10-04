@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  clerkId    String   @unique
+  email      String   @unique
+  firstName  String
+  lastName   String
+  role       UserRole @default(EMPLOYEE)
+  department String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  COMMERCIAL
+  CHEFUSINE
+  CHEFEQUIPE
+  MAGASINIER
+  RH
+  COMPTABLE
+  CHEFQUALITE
+  EMPLOYEE
+}
+
+model FactureProforma {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  carName   String
+  name      String
+  email     String
+  phone     String
+  message   String
+  status    String   @default("pending")
+}
+
+model OffreSpeciale {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  email     String
+  phone     String
+  message   String
+  status    String   @default("pending")
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  status    String   @default("pending")
+}
+
+model Reservations {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  voiture   String
+  name      String
+  prenoms    String
+  email     String
+  phone     String
+  date      String
+  message   String
+  status    String   @default("pending")
+}
+
+model CommandesAccessoires {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nom       String
+  prenom    String
+  email     String
+  phone     String
+  message   String
+  status    String   @default("pending")
+}
+
+model OffreExceptionelle {
+  id               String   @id @default(uuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  vehicule         String
+  prixPromotionnel String
+  remise           String
+  name             String
+  email            String
+  phone            String
+  message          String
+  status           String   @default("pending")
+}
