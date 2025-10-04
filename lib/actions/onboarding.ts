@@ -106,8 +106,13 @@ export async function createOffreExceptionnelle(formData: {
   message: string;
 }) {
   try {
+    console.log('Attempting to send email with Resend...');
+    console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY);
+    console.log('ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
+    console.log('Form data:', formData);
+    
     // Send email via Resend
-    await resend.emails.send({
+    const emailResult = await resend.emails.send({
       from: 'Kpandji Offres <onboarding@resend.dev>',
       to: [ADMIN_EMAIL],
       subject: `Nouvelle Offre Exceptionnelle - ${formData.vehicule}`,
@@ -132,6 +137,8 @@ export async function createOffreExceptionnelle(formData: {
         </div>
       `,
     });
+    
+    console.log('Email sent successfully:', emailResult);
 
     // Save to database
     await prisma.offreExceptionelle.create({
@@ -146,10 +153,12 @@ export async function createOffreExceptionnelle(formData: {
       },
     });
 
+    console.log('Database save successful');
     return { success: true };
   } catch (error) {
     console.error("Error creating exceptional offer:", error);
-    return { success: false };
+    console.error("Full error details:", JSON.stringify(error, null, 2));
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 }
 
